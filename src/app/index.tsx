@@ -1,24 +1,24 @@
 import React, { useEffect, FC } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
-import Svg, { Circle, Rect } from "react-native-svg";
 import { useRouter } from 'expo-router';
 
 interface SplashScreenProps {
   onFinish: () => void;
 }
 
-const SplashScreen: FC<SplashScreenProps> = ({ onFinish }) => {
+const LogoSplashScreen: FC<SplashScreenProps> = ({ onFinish }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onFinish();
-    }, 3000); // 3 seconds for demonstration
+    }, 3000); 
     return () => clearTimeout(timer);
   }, [onFinish]);
 
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image source={require('../imgs/logo.png')}/>
+        <Image source={require('../imgs/logo.png')}
+        style={styles.image}/>
       </View>
       <Text style={styles.appName}>Jobspot</Text>
     </View>
@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     isSplashVisible ? (
-      <SplashScreen onFinish={() => setSplashVisible(false)} />
+      <LogoSplashScreen onFinish={() => setSplashVisible(false)} />
     ) : null
   );
 };
@@ -45,9 +45,13 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1A0057",
+    backgroundColor: "#130160",
     justifyContent: "center",
     alignItems: "center",
+  },
+  image: {
+    width: 100,
+    height: 100,
   },
   logoContainer: {
     marginBottom: 20,

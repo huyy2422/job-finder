@@ -1,5 +1,5 @@
 import React, { useEffect, FC } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import Svg, { Circle, Rect } from "react-native-svg";
 import { useRouter } from 'expo-router';
 
@@ -18,20 +18,7 @@ const SplashScreen: FC<SplashScreenProps> = ({ onFinish }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Svg width={80} height={80} viewBox="0 0 100 100">
-          <Rect x="10" y="10" width="80" height="80" rx="20" fill="white" />
-          <Circle cx="35" cy="40" r="5" fill="black" />
-          <Circle cx="65" cy="40" r="5" fill="black" />
-          <Rect
-            x="40"
-            y="55"
-            width="20"
-            height="3"
-            rx="2"
-            fill="black"
-            transform="rotate(0 30 55)"
-          />
-        </Svg>
+        <Image source={require('../imgs/logo.png')}/>
       </View>
       <Text style={styles.appName}>Jobspot</Text>
     </View>
@@ -44,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     if (!isSplashVisible) {
-      router.replace('/home'); // Navigate to the home screen
+      router.replace('/(splash)');
     }
   }, [isSplashVisible]);
 

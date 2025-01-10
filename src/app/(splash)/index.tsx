@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const SplashScreen = ({ onNext }) => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const SplashScreen = ({ onNext }) => {
 
       <View style={styles.textContainer}>
         <Text style={styles.title}>
-          Find Your {'\n'}<Text style={styles.highlight}>Dream Job {'\n'}</Text>Here!
+          Find Your {'\n'}<Text style={styles.highlight}>Dream Job{'\n'}</Text>Here!
         </Text>
         <Text style={styles.subtitle}>
           Explore all the most exciting job roles based on your interest and study major.
@@ -28,7 +29,7 @@ const SplashScreen = ({ onNext }) => {
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleNext}>
-        <Text style={styles.buttonText}>→</Text>
+      <Icon name="arrow-right" size={23} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 311,
+    height: 301,
   },
   textContainer: {
     alignItems: "baseline",
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
   },
   highlight: {
     color: "#FF8C00",
+    textDecorationLine: "underline"
   },
   subtitle: {
     fontSize: 17,

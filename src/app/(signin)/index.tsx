@@ -1,8 +1,13 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"; // For the password eye icon
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"; 
+import { useRouter } from "expo-router";
+const LoginScreen = ({}) => {
+  const router = useRouter();
 
-const LoginScreen = () => {
+  const handleNext = () => {
+    router.push('../../(signup)')
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back</Text>
@@ -56,7 +61,7 @@ const LoginScreen = () => {
 
       <Text style={styles.signupText}>
         You don’t have an account yet?{" "}
-        <Text style={styles.signupLink}>Sign up</Text>
+        <TouchableOpacity style={styles.signuplink} onPress={handleNext}><Text style={styles.signupLink}>Sign up</Text></TouchableOpacity>
       </Text>
     </View>
   );
@@ -78,13 +83,14 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: "#6e6e6e",
+    color: "#1A0111",
     marginTop: 10,
     textAlign: "center",
     paddingHorizontal: 20,
+    fontWeight: "bold"
   },
   inputContainer: {
-    width: "100%",
+    width: "90%",
     marginTop: 20,
   },
   label: {
@@ -111,7 +117,7 @@ const styles = StyleSheet.create({
     borderColor: "#FFF",
   },
   options: {
-    width: "100%",
+    width: "90%",
     marginTop: 15,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -145,7 +151,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     alignItems: "center",
     marginTop: 30,
-    width: "100%",
+    width: "75%",
   },
   loginText: {
     fontSize: 16,
@@ -159,7 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 15,
     marginTop: 15,
-    width: "100%",
+    width: "75%",
     justifyContent: "center",
   },
   googleIcon: {
@@ -182,6 +188,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textDecorationLine: "underline"
   },
+  signuplink: {
+  }
 });
 
 export default LoginScreen;

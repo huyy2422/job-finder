@@ -1,26 +1,62 @@
-import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"; 
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  AppState,
+  Alert,
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useRouter } from "expo-router";
+import { supabase } from "../../lib/supabase";
+
+AppState.addEventListener("change", (state) => {
+  if (state === "active") {
+    supabase.auth.startAutoRefresh();
+  } else {
+    supabase.auth.stopAutoRefresh();
+  }
+});
+
 const LoginScreen = ({}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function signInWithEmail() {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) Alert.alert(error.message);
+    setLoading(false);
+  }
+
   const router = useRouter();
 
   const handleNext = () => {
-    router.push('../../(signup)')
+    router.push("../../(signup)");
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back</Text>
       <Text style={styles.subtitle}>
-      Let’s get right back to finding your dream career!
+        Let’s get right back to finding your dream career!
       </Text>
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Email</Text>
         <TextInput
           style={styles.input}
-          placeholder="Brandonelouis@gmail.com"
-          placeholderTextColor="#A0A0A0"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          placeholder="email@address.com"
+          autoCapitalize={"none"}
         />
       </View>
 
@@ -29,9 +65,11 @@ const LoginScreen = ({}) => {
         <View style={styles.passwordWrapper}>
           <TextInput
             style={[styles.input, { flex: 1 }]}
-            placeholder="********"
-            placeholderTextColor="#A0A0A0"
+            onChangeText={(text) => setPassword(text)}
+            value={password}
             secureTextEntry={true}
+            placeholder="Password"
+            autoCapitalize={"none"}
           />
           <Icon name="eye-off-outline" size={20} color="#A0A0A0" />
         </View>
@@ -47,13 +85,13 @@ const LoginScreen = ({}) => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity style={styles.loginButton} disabled={loading} onPress={() => signInWithEmail()}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.googleButton}>
         <Image
-          source={require ('../../imgs/gglogo.jpg')}
+          source={require("../../imgs/gglogo.jpg")}
           style={styles.googleIcon}
         />
         <Text style={styles.googleText}>SIGN IN WITH GOOGLE</Text>
@@ -61,7 +99,9 @@ const LoginScreen = ({}) => {
 
       <Text style={styles.signupText}>
         You don’t have an account yet?{" "}
-        <TouchableOpacity style={styles.signuplink} onPress={handleNext}><Text style={styles.signupLink}>Sign up</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.signuplink} onPress={handleNext}>
+          <Text style={styles.signupLink}>Sign up</Text>
+        </TouchableOpacity>
       </Text>
     </View>
   );
@@ -87,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
     paddingHorizontal: 20,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   inputContainer: {
     width: "90%",
@@ -134,7 +174,7 @@ const styles = StyleSheet.create({
     borderColor: "#E6E1FF",
     borderRadius: 4,
     marginRight: 8,
-    color: "#E6E1FF"
+    color: "#E6E1FF",
   },
   checkboxLabel: {
     fontSize: 14,
@@ -186,10 +226,9 @@ const styles = StyleSheet.create({
   signupLink: {
     color: "#FF8C00",
     fontWeight: "bold",
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
   },
-  signuplink: {
-  }
+  signuplink: {},
 });
 
 export default LoginScreen;

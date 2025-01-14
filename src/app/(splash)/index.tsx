@@ -7,7 +7,7 @@ const SplashScreen = ({ onNext }) => {
   const router = useRouter();
 
   const handleNext = () => {
-    router.push('../../(signin)')
+    router.push('../../(home)')
   };
   return (
     <View style={styles.container}>

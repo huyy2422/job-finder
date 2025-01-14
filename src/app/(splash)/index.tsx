@@ -7,7 +7,7 @@ const SplashScreen = ({ onNext }) => {
   const router = useRouter();
 
   const handleNext = () => {
-    router.push('../../(verifyemail)')
+    router.push('../../(verifyemail)/(verified)')
   };
   return (
     <View style={styles.container}>

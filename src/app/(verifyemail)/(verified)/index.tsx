@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "reac
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"; 
 import { useRouter } from "expo-router";
 
-const EmailVerificationScreen = ({}) => {
+const EmailVerifiedScreen = ({}) => {
   const router = useRouter();
 
   const handleBack = () => {
@@ -11,27 +11,22 @@ const EmailVerificationScreen = ({}) => {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Check Your Email</Text>
+      <Text style={styles.title}>Successfully</Text>
       <Text style={styles.subtitle}>
-      We have sent the reset password to the email address brandonelouis@gmial.com
+      Your password has been updated, please change your password regularly to avoid this happening
       </Text>
       <View style={styles.illustrationContainer}>
-              <Image source={require('../../imgs/emailverification.png')}
+              <Image source={require('../../../imgs/emailverified.png')}
               style={styles.image}
               />
             </View>
-      <TouchableOpacity style={styles.openemailbutton}>
-        <Text style={styles.emailText}>OPEN YOUR EMAIL</Text>
+      <TouchableOpacity style={styles.Continuebutton}>
+        <Text style={styles.emailText}>CONTINUE</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.backtologinbutton} onPress={handleBack}>
         <Text style={styles.backtologintext}>BACK TO LOGIN</Text>
       </TouchableOpacity>
-
-      <Text style={styles.resendText}>
-      You have not received the email?{" "}
-        <TouchableOpacity style={styles.resendButton}><Text style={styles.resendLink}>Resend</Text></TouchableOpacity>
-      </Text>
     </View>
   );
 };
@@ -71,7 +66,7 @@ const styles = StyleSheet.create({
     width: 125,
     height: 110,
   },
-  openemailbutton: {
+  Continuebutton: {
     backgroundColor: "#1A0057",
     borderRadius: 8,
     paddingVertical: 15,
@@ -99,19 +94,6 @@ const styles = StyleSheet.create({
     color: "#1A0057",
     fontWeight: "bold",
   },
-  resendText: {
-    marginTop: 20,
-    fontSize: 14,
-    color: "#6e6e6e",
-    fontWeight: "bold"
-  },
-  resendLink: {
-    color: "#FF8C00",
-    fontWeight: "bold",
-    textDecorationLine: "underline"
-  },
-  resendButton: {
-  }
 });
 
-export default EmailVerificationScreen;
+export default EmailVerifiedScreen;

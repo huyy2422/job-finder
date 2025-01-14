@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"; 
 import { useRouter } from "expo-router";
 
 const EmailVerifiedScreen = ({}) => {
@@ -16,7 +15,7 @@ const EmailVerifiedScreen = ({}) => {
       Your password has been updated, please change your password regularly to avoid this happening
       </Text>
       <View style={styles.illustrationContainer}>
-              <Image source={require('../../../imgs/emailverified.png')}
+              <Image source={require('../../imgs/emailverified.png')}
               style={styles.image}
               />
             </View>

@@ -39,6 +39,10 @@ const LoginScreen = ({}) => {
 
   const router = useRouter();
 
+  const handleForgotPassword = () => {
+    router.push("../../(passforgot)")
+  };
+
   const handleNext = () => {
     router.push("../../(signup)");
   };
@@ -80,7 +84,7 @@ const LoginScreen = ({}) => {
           <View style={styles.checkbox} />
           <Text style={styles.checkboxLabel}>Remember me</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleForgotPassword}>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>

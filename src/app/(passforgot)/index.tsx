@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useRouter } from "expo-router";
 
 const ForgotPasswordScreen = ({}) => {
@@ -16,6 +15,9 @@ const ForgotPasswordScreen = ({}) => {
   const handleBack = () => {
     router.push("../../(signin)");
   };
+  const handleNext = () => {
+    router.push('../../(verifyemail)')
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Forgot Password?</Text>
@@ -37,7 +39,7 @@ const ForgotPasswordScreen = ({}) => {
           placeholderTextColor="#A0A0A0"
         />
       </View>
-      <TouchableOpacity style={styles.openemailbutton}>
+      <TouchableOpacity style={styles.openemailbutton} onPress={handleNext}>
         <Text style={styles.emailText}>RESET PASSWORD</Text>
       </TouchableOpacity>
 

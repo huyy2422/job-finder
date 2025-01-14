@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"; 
 import { useRouter } from "expo-router";
 
 const EmailVerificationScreen = ({}) => {
@@ -9,6 +8,7 @@ const EmailVerificationScreen = ({}) => {
   const handleBack = () => {
     router.push('../../(signin)')
   }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Check Your Email</Text>
